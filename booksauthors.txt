@@ -1,0 +1,120 @@
+
+>>> Book.objects.create(name='C sharp')
+<Book: Book object>
+
+>>> Book.objects.create(name='Java')
+<Book: Book object>
+
+>>> Book.objects.create(name='Python')
+<Book: Book object>
+
+>>> Book.objects.create(name='PHP')
+<Book: Book object>
+
+>>> Book.objects.create(name='Ruby')
+<Book: Book object>
+
+>>> Author.objects.create(first_name='Mike')
+<Author: Author object>
+
+>>> Author.objects.create(first_name='Speros')
+<Author: Author object>
+
+>>> Author.objects.create(first_name='John')
+<Author: Author object>
+
+>>> Author.objects.create(first_name='Jadee')
+<Author: Author object>
+
+>>> Author.objects.create(first_name='Jay')
+<Author: Author object>
+
+notes = models.TextField(max_length=255, blank=True)
+
+>>> python manage.py makemigrations
+
+>>> python manage.py migrate
+
+>>> python manage.py shell
+
+>>> from apps.book_authors.models import *
+
+>>> b5 = Book.objects.get(id=5)
+
+>>> b5.name = "C#"
+
+>>> b5.save()
+
+>>> b5.name
+'C#'
+
+>>> a5 = Author.objects.get(id=5)
+
+>>> a5.first_name='Ketul'
+
+>>> a5.save()
+
+>>> a5.first_name
+'Ketul'
+
+>>> a1 = Author.objects.get(id=1)
+
+>>> b1 = Book.objects.get(id=1)
+
+>>> b2 = Book.objects.get(id=2)
+
+>>> b1.authors.add(a1)
+
+>>> b2.authors.add(a1)
+
+>>> b3 = Book.objects.get(id=3)
+
+>>> a2 = Author.objects.get(id=2)
+
+>>> b1.authors.add(a2)
+
+>>> b2.authors.add(a2)
+
+>>> b3.authors.add(a2)
+
+>>> a3 = Author.objects.get(id=3)
+
+>>> b4 = Book.objects.get(id=4)
+
+>>> b1.authors.add(a3)
+
+>>> b2.authors.add(a3)
+
+>>> b3.authors.add(a3)
+
+>>> b4.authors.add(a3)
+
+>>> a4 = Author.objects.get(id=4)
+
+>>> b1.authors.add(a4)
+
+>>> b2.authors.add(a4)
+
+>>> b3.authors.add(a4)
+
+>>> b4.authors.add(a4)
+
+>>> b5.authors.add(a4)
+
+>>> b3.authors.all().values()
+ <QuerySet [{'first_name': u'Speros', 'last_name': u'', 'notes': u'', 'updated_at': datetime.datetime(2017, 10, 20, 18, 12, 50, 970561, tzinfo=<UTC>), 'email': u'', 'creeated_at': datetime.datetime(2017, 10, 20, 18, 12, 50, 970493, tzinfo=<UTC>), u'id': 2}, 
+            {'first_name': u'John', 'last_name': u'', 'notes': u'', 'updated_at': datetime.datetime(2017, 10, 20, 18, 12, 57, 194188, tzinfo=<UTC>), 'email': u'', 'creeated_at': datetime.datetime(2017, 10, 20, 18, 12, 57, 194119, tzinfo=<UTC>), u'id': 3}, 
+            {'first_name': u'Jadee', 'last_name': u'', 'notes': u'', 'updated_at': datetime.datetime(2017, 10, 20, 18, 13, 3, 194071, tzinfo=<UTC>), 'email': u'', 'creeated_at': datetime.datetime(2017, 10, 20, 18, 13, 3, 194004, tzinfo=<UTC>), u'id': 4}]>
+
+>>> b3.authors.remove(a1)
+
+>>> b2.authors.add(a5)
+
+>>> a3.books_obj.all().values()
+ <QuerySet [{'updated_at': datetime.datetime(2017, 10, 20, 18, 11, 46, 37817, tzinfo=<UTC>), 'desc': u'', 'creeated_at': datetime.datetime(2017, 10, 20, 18, 11, 46, 37450, tzinfo=<UTC>), u'id': 1, 'name': u'C sharp'}, 
+            {'updated_at': datetime.datetime(2017, 10, 20, 18, 11, 53, 485132, tzinfo=<UTC>), 'desc': u'', 'creeated_at': datetime.datetime(2017, 10, 20, 18, 11, 53, 485052, tzinfo=<UTC>), u'id': 2, 'name': u'Java'}, 
+            {'updated_at': datetime.datetime(2017, 10, 20, 18, 12, 0, 100813, tzinfo=<UTC>), 'desc': u'', 'creeated_at': datetime.datetime(2017, 10, 20, 18, 12, 0, 100745, tzinfo=<UTC>), u'id': 3, 'name': u'Python'}, 
+            {'updated_at': datetime.datetime(2017, 10, 20, 18, 12, 8, 420374, tzinfo=<UTC>), 'desc': u'', 'creeated_at': datetime.datetime(2017, 10, 20, 18, 12, 8, 420306, tzinfo=<UTC>), u'id': 4, 'name': u'PHP'}]>
+
+>>> a2.books_obj.all()
+<QuerySet [Book: -----C sharp, Book: -----Java, Book: -----Python]>
